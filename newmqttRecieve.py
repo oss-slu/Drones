@@ -18,7 +18,7 @@ def on_disconnect(client, userdata, flags, rc=0):
 def on_message(client, userdata, msg):
     topic=msg.topic
     m_decode=json.loads(msg.payload.decode("utf-8","ignore"))
-    print(f'message received {m_decode}')
+    #print(f'{m_decode}')
     #print(m_decode["Command"])
     droneID = 2
     parseMessage(m_decode, droneID)
@@ -27,7 +27,7 @@ def on_message(client, userdata, msg):
 def parseMessage(m_decode, droneID):
     #checks id and returns command if matched id
     if droneID == m_decode["DroneID"]:
-        print(m_decode["Command"])
+        print(m_decode["Command"], "-", m_decode["VR_name"])
 
 
 
@@ -43,7 +43,7 @@ def create_mqtt_client():
     # create a MQTT client and connect it to the broker here
     mqtt_config = get_mqtt_config()
     
-    client=mqtt.Client("missionConfigurator")
+    client=mqtt.Client("Drone2")
     client.connected_flag = False
     client.on_connect=on_connect
     client.on_disconnect=on_disconnect

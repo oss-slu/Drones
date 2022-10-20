@@ -45,7 +45,7 @@ while True:
     message = createCommand(ID, command, name)
     client.publish("test", message)
     print("Publishing... " + f"test{message}")
-    testnum += 1
-    time.sleep(4)
+
+    time.sleep(6)
    
 client.loop_stop()

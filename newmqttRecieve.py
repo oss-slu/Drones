@@ -17,30 +17,27 @@ def on_disconnect(client, userdata, flags, rc=0):
 
 def on_message(client, userdata, msg):
     topic=msg.topic
-    m_decode=str(msg.payload.decode("utf-8","ignore"))
+    m_decode=json.loads(msg.payload.decode("utf-8","ignore"))
     print(f'message received {m_decode}')
-    #parseMessage(json.loads(m_decode), client)
+    #print(m_decode["Command"])
+    droneID = 2
+    parseMessage(m_decode, droneID)
 
-#def parsemessage(message, client):
-#    for role in message['mission_roles']:
-#        file = open(f'./json_files/{role["role"]}.json')
-#        data = json.load(file)
-#        data['waypoints'] = []
-#        #print(data['waypoints'])
-#        for drone in role['drone_list']:
-#            '''
-#            # todo: demo code only - fix it properly for all roles 
-#            print("data coming from the front end {}".format(drone))
-#            if role["role"] == 'birds_eye_surveillance':
-#                data['waypoints'].append(drone["hoverpoint"])
-#            else:
-#                data['waypoints'] = drone["waypoints"]
-#            '''
-#            print("sending this json {}".format(data));
-#            client.publish(f'drone/{drone["id"]}/mission-spec', json.dumps(data))
-#            with open(f'{drone["id"]}.json','w') as f:
-#                json.dump(data,f)
-#            f.close()
+
+def parseMessage(m_decode, droneID):
+    #checks id and returns command if matched id
+    if droneID == m_decode["DroneID"]:
+        print(m_decode["Command"])
+
+
+
+
+
+
+
+
+
+
 
 def create_mqtt_client():
     # create a MQTT client and connect it to the broker here

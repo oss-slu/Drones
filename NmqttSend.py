@@ -17,7 +17,7 @@ def on_connect(client, userdata, flags, rc):
 broker_address = "192.168.1.117"
 user = ""
 password = ""
-name = "VR1"
+name = "VR2"
 
 client = mqtt.Client(name)
 client.on_connect = on_connect

@@ -1,0 +1,4 @@
+{
+    "mqtt_broker_address": "192.168.1.117",
+    "mqtt_port":1883
+}

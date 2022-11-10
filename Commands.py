@@ -22,7 +22,7 @@ class fcuModes:
     	try:
     		takeoffService = rospy.ServiceProxy('mavros/cmd/takeoff', mavros_msgs.srv.CommandTOL)
     		takeoffService(altitude = 1)
-    	except rospy.ServiceException, e:
+    	except rospy.ServiceException:
     		print ("Service takeoff call failed: %s")
 
     def setArm(self):
@@ -30,7 +30,7 @@ class fcuModes:
         try:
             armService = rospy.ServiceProxy('mavros/cmd/arming', mavros_msgs.srv.CommandBool)
             armService(True)
-        except rospy.ServiceException, e:
+        except rospy.ServiceException:
             print ("Service arming call failed: %s")
 
     def setDisarm(self):
@@ -38,7 +38,7 @@ class fcuModes:
         try:
             armService = rospy.ServiceProxy('mavros/cmd/arming', mavros_msgs.srv.CommandBool)
             armService(False)
-        except rospy.ServiceException, e:
+        except rospy.ServiceException:
             print ("Service disarming call failed: %s")
 
     def setStabilizedMode(self):
@@ -46,7 +46,7 @@ class fcuModes:
         try:
             flightModeService = rospy.ServiceProxy('mavros/set_mode', mavros_msgs.srv.SetMode)
             flightModeService(custom_mode='STABILIZED')
-        except rospy.ServiceException, e:
+        except rospy.ServiceException:
             print ("service set_mode call failed: %s. Stabilized Mode could not be set.")
 
     def setOffboardMode(self):
@@ -54,7 +54,7 @@ class fcuModes:
         try:
             flightModeService = rospy.ServiceProxy('mavros/set_mode', mavros_msgs.srv.SetMode)
             flightModeService(custom_mode='OFFBOARD')
-        except rospy.ServiceException, e:
+        except rospy.ServiceException:
             print ("service set_mode call failed: %s. Offboard Mode could not be set.")
 
     def setAltitudeMode(self):
@@ -62,7 +62,7 @@ class fcuModes:
         try:
             flightModeService = rospy.ServiceProxy('mavros/set_mode', mavros_msgs.srv.SetMode)
             flightModeService(custom_mode='ALTCTL')
-        except rospy.ServiceException, e:
+        except rospy.ServiceException:
             print ("service set_mode call failed: %s. Altitude Mode could not be set.")
 
     def setPositionMode(self):
@@ -70,7 +70,7 @@ class fcuModes:
         try:
             flightModeService = rospy.ServiceProxy('mavros/set_mode', mavros_msgs.srv.SetMode)
             flightModeService(custom_mode='POSCTL')
-        except rospy.ServiceException, e:
+        except rospy.ServiceException:
             print ("service set_mode call failed: %s. Position Mode could not be set.")
 
     def setAutoLandMode(self):
@@ -78,7 +78,7 @@ class fcuModes:
         try:
             flightModeService = rospy.ServiceProxy('mavros/set_mode', mavros_msgs.srv.SetMode)
             flightModeService(custom_mode='AUTO.LAND')
-        except rospy.ServiceException, e:
+        except rospy.ServiceException:
                print ("service set_mode call failed: %s. Autoland Mode could not be set.")
 
 class Controller:
@@ -158,8 +158,7 @@ def main():
 
     # Make sure the drone is armed
     while not cnt.state.armed:
-        modes.setArm()
-        rate.sleep()
+    	modes.setArm()
 
     client = socket.socket(socket.AF_INET, socket.SOCK_DGRAM) # UDP
     client.setsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST, 1)
@@ -194,7 +193,7 @@ def main():
             break
         sp_pub.publish(cnt.sp)
         #print "----published---- x:%f ,y:%f, z:%f"%(cnt.sp.position.x,cnt.sp.position.y,cnt.sp.position.z)
-    	rate.sleep()
+    rate.sleep()
 
     # activate auto land mode
     modes.setAutoLandMode()

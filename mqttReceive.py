@@ -41,6 +41,6 @@ print("Subscribing to topic", "test")
 client.subscribe("test")
 
 while connected != True or message_received != True:
-    time.sleep(0.2)
+    time.sleep(3)
 
 client.loop_forever()

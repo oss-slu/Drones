@@ -67,7 +67,7 @@ v1 Apr 25, 2023
 *Mosquitto MQTT
 *Paho Mqtt
 
-##C#ontrol System 
+###Control System 
 *QGroundControl desktop application
 *Raspberry Pi OS (Legacy)
 *Python 3.7

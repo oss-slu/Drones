@@ -54,12 +54,12 @@ v1 Apr 25, 2023
 ##Software Requirements
 *Source Code: https://github.com/oss-slu/Drones
 
-##VR Control System
+###VR Control System
 *Meta Quest mobile application
 *Unity Hub desktop application 
 *Oculus desktop application 
 
-##Drones 
+###Drones 
 *Raspberry Pi OS (Legacy)
 *Python 3.7
 *Mavsdk
@@ -67,7 +67,7 @@ v1 Apr 25, 2023
 *Mosquitto MQTT
 *Paho Mqtt
 
-##Control System 
+##C#ontrol System 
 *QGroundControl desktop application
 *Raspberry Pi OS (Legacy)
 *Python 3.7

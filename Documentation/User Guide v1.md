@@ -27,8 +27,7 @@ or hardware troubleshooting, refer to the Developers Guide.
 6. Sign in with the same Meta account as your Oculus 3. Create and join an organization
 7. Go to devices -\> headset settings -\> developer mode and turn on Developer Mode
 
-#### Open VR code on Unity Editor using Unity Hub and the 2020.3.47f1
-editor version 
+#### Open VR code on Unity Editor using Unity Hub and the 2020.3.47f1 editor version 
 1. Go to file -\> build settings and switch platform to Android 
 2. Texture Compression should be set to ASTC
 3. ETC2 fallback should be set to 32-bit
